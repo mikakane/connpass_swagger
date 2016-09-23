@@ -3,7 +3,7 @@
 swagger: '2.0'
 info:
   title: Connpass API
-  description: Move your app forward with the Uber API
+  description: Connpass API
   version: "1.0.0"
 # the domain of the service
 host: connpass.com
