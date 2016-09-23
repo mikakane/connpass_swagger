@@ -1,0 +1,83 @@
+# this is an example of the Uber API
+# as a demonstration of an API spec in YAML
+swagger: '2.0'
+info:
+  title: Portfolio API
+  description: Move your app forward with the Uber API
+  version: "1.0.0"
+# the domain of the service
+host: connpass.com
+# array of all schemes that your API supports
+schemes:
+  - https
+  - http
+# will be prefixed to all paths
+basePath: /api/v1/
+consumes:
+  - "application/json; charset=utf-8"
+  - application/json
+produces:
+  - "application/json; charset=utf-8"
+  - application/json
+
+parameters:
+  start:
+    name: start
+    in: query
+    description: 検索の開始位置
+    required: false
+    type: integer
+  count:
+    name: count
+    in: query
+    description: 取得件数
+    required: false
+    type: integer
+  series_id:
+    name: series_id
+    in: query
+    description: グループID[1100]
+    required: false
+    type: integer
+paths:
+  /event/:
+    get:
+      summary: 検索クエリの条件に応じたイベント一覧を取得できます。
+      operationId: getEvent
+      parameters:
+        - $ref: "#/parameters/series_id"
+        - $ref: "#/parameters/start"
+        - $ref: "#/parameters/count"
+      tags:
+        - events
+      responses:
+        200:
+          description: 検索クエリの条件に応じたイベント一覧を取得
+          schema:
+            type: object
+            required: ["events"]
+            properties:
+              events:
+                type: array
+                items:
+                  $ref: '#/definitions/Event'
+
+definitions:
+  Event:
+    type: object
+    properties:
+      event_id:
+        type: number
+        description: イベントのID
+      title:
+        type: string
+        description: タイトル
+      catch:
+        type: string
+        description: キャッチ
+      description:
+        type: string
+        description: 概要(HTML形式)
+      event_url:
+        type: string
+        description: connpass.com上のURL
