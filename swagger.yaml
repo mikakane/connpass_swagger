@@ -55,8 +55,17 @@ paths:
           description: 検索クエリの条件に応じたイベント一覧を取得
           schema:
             type: object
-            required: ["events"]
+            required: ["events","result_available"]
             properties:
+              result_available:
+                type: number
+                default: 1
+              result_returned:
+                type: number
+                default: 1
+              result_start:
+                type: number
+                default: 1
               events:
                 type: array
                 items:
