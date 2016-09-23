@@ -14,8 +14,10 @@ schemes:
 # will be prefixed to all paths
 basePath: /api/v1/
 consumes:
+  - "application/json; charset=utf-8"
   - application/json
 produces:
+  - "application/json; charset=utf-8"
   - application/json
 
 parameters:
@@ -53,9 +55,9 @@ paths:
           description: 検索クエリの条件に応じたイベント一覧を取得
           schema:
             type: object
-            required: ["event"]
+            required: ["events"]
             properties:
-              event:
+              events:
                 type: array
                 items:
                   $ref: '#/definitions/Event'
